@@ -1,0 +1,11 @@
+#!/bin/sh
+cd "$(dirname $0)" && \
+git reset --hard && \
+for i in \
+demo.and.dev-upch-in demo.and.dev-upch-uk
+do
+cp ../../certs/etc/letsencrypt/live/${i}/fullchain.pem certs/${i}-fullchain.pem
+done && \
+git add certs && \
+git commit -m "update certs $(date -u -Iseconds)" && \
+git push
